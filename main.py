@@ -85,10 +85,12 @@ def show_help():
     help_label = tk.Label(help_window, text=help_text, justify=tk.LEFT)
     help_label.pack(padx=10, pady=10)
 
-if __name__ == '__main__':
-    # メインウィンドウの作成
-    root = tk.Tk()
-    root.title("Google Scholar Sorter")
+def create_widgets():
+    global entry, button, status_label
+    global sortby_var, sortby_entry, nresults_var, nresults_entry
+    global csvpath_var, csvpath_entry, notsavecsv_var
+    global plotresults_var, startyear_var, startyear_entry
+    global endyear_var, endyear_entry, debug_var
 
     # エントリーウィジェット（文字入力エリア）の作成
     entry = tk.Entry(root, width=50)
@@ -148,6 +150,14 @@ if __name__ == '__main__':
     # ステータスラベルの作成
     status_label = ttk.Label(root, text="")
     status_label.grid(row=10, column=0, columnspan=2, padx=10, pady=10)
+
+if __name__ == '__main__':
+    # メインウィンドウの作成
+    root = tk.Tk()
+    root.title("Google Scholar Sorter")
+
+    # ウィジェットの作成
+    create_widgets()
 
     # メインループの開始
     root.mainloop()
