@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import threading
 import subprocess
+import os
 
 def search():
     """検索を実行する関数
@@ -9,24 +10,39 @@ def search():
     keyword = entry.get()
     command = f'sortgs "{keyword}"'
 
-    # オプションの追加
+    # バリデーションチェック
+    if nresults_var.get():
+        if not nresults_entry.get().isdigit():
+            status_label.config(text="数値を入力してください（Number of results）", foreground="red")
+            return
+        command += f' --nresults {nresults_entry.get()}'
+    
+    if csvpath_var.get():
+        if not os.path.isdir(csvpath_entry.get()):
+            status_label.config(text="存在するディレクトリを入力してください（CSV path）", foreground="red")
+            return
+        command += f' --csvpath "{csvpath_entry.get()}"'
+    
+    if startyear_var.get():
+        if not startyear_entry.get().isdigit():
+            status_label.config(text="数値を入力してください（Start year）", foreground="red")
+            return
+        command += f' --startyear {startyear_entry.get()}'
+    
+    if endyear_var.get():
+        if not endyear_entry.get().isdigit():
+            status_label.config(text="数値を入力してください（End year）", foreground="red")
+            return
+        command += f' --endyear {endyear_entry.get()}'
+    
     if sortby_var.get():
         command += f' --sortby "{sortby_entry.get()}"'
-    if nresults_var.get():
-        command += f' --nresults {nresults_entry.get()}'
-    if csvpath_var.get():
-        command += f' --csvpath "{csvpath_entry.get()}"'
     if notsavecsv_var.get():
         command += ' --notsavecsv'
     if plotresults_var.get():
         command += ' --plotresults'
-    if startyear_var.get():
-        command += f' --startyear {startyear_entry.get()}'
-    if endyear_var.get():
-        command += f' --endyear {endyear_entry.get()}'
     if debug_var.get():
         command += ' --debug'
-    
     # ボタンを無効化
     button.config(state=tk.DISABLED)
     
