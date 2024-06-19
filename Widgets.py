@@ -75,33 +75,37 @@ class Widgets:
     def search(self):
         """検索を実行する関数
         """
-        keyword = self.entry.get()
+        keyword = self.entry.get().strip()
         command = f'sortgs "{keyword}"'
 
-        # バリデーションチェック
+         # バリデーションチェック
         if self.nresults_var.get():
-            if not self.nresults_entry.get().isdigit():
+            nresults = self.nresults_entry.get().strip()
+            if not nresults.isdigit():
                 self.status_label.config(text="数値を入力してください（Number of results）", foreground="red")
                 return
-            command += f' --nresults {self.nresults_entry.get()}'
+            command += f' --nresults {nresults}'
         
         if self.csvpath_var.get():
-            if not os.path.isdir(self.csvpath_entry.get()):
+            csvpath = self.csvpath_entry.get().strip()
+            if not os.path.isdir(csvpath):
                 self.status_label.config(text="存在するディレクトリを入力してください（CSV path）", foreground="red")
                 return
-            command += f' --csvpath "{self.csvpath_entry.get()}"'
+            command += f' --csvpath "{csvpath}"'
         
         if self.startyear_var.get():
-            if not self.startyear_entry.get().isdigit():
+            startyear = self.startyear_entry.get().strip()
+            if not startyear.isdigit():
                 self.status_label.config(text="数値を入力してください（Start year）", foreground="red")
                 return
-            command += f' --startyear {self.startyear_entry.get()}'
+            command += f' --startyear {startyear}'
         
         if self.endyear_var.get():
-            if not self.endyear_entry.get().isdigit():
+            endyear = self.endyear_entry.get().strip()
+            if not endyear.isdigit():
                 self.status_label.config(text="数値を入力してください（End year）", foreground="red")
                 return
-            command += f' --endyear {self.endyear_entry.get()}'
+            command += f' --endyear {endyear}'
         
         if self.sortby_var.get():
             command += ' --sortby "cit/year"'
