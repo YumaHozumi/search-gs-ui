@@ -12,6 +12,7 @@ class Widgets:
     def create_widgets(self):
         # エントリーウィジェット（文字入力エリア）の作成
         self.entry = tk.Entry(self.root, width=50)
+        self.entry.insert(0, "")  # 追加
         self.entry.grid(row=0, column=0, padx=10, pady=10)
 
         # 検索ボタンの作成
@@ -23,18 +24,21 @@ class Widgets:
         self.sortby_check = tk.Checkbutton(self.root, text="Sort by", variable=self.sortby_var)
         self.sortby_check.grid(row=1, column=1, sticky='w')
         self.sortby_entry = tk.Entry(self.root, width=50)
+        self.sortby_entry.insert(0, "")  # 追加
         self.sortby_entry.grid(row=1, column=0, padx=10, pady=5)
 
         self.nresults_var = tk.BooleanVar()
         self.nresults_check = tk.Checkbutton(self.root, text="Number of results", variable=self.nresults_var)
         self.nresults_check.grid(row=2, column=1, sticky='w')
         self.nresults_entry = tk.Entry(self.root, width=50)
+        self.nresults_entry.insert(0, "")  # 追加
         self.nresults_entry.grid(row=2, column=0, padx=10, pady=5)
 
         self.csvpath_var = tk.BooleanVar()
         self.csvpath_check = tk.Checkbutton(self.root, text="CSV path", variable=self.csvpath_var)
         self.csvpath_check.grid(row=3, column=1, sticky='w')
         self.csvpath_entry = tk.Entry(self.root, width=50)
+        self.csvpath_entry.insert(0, "")  # 追加
         self.csvpath_entry.grid(row=3, column=0, padx=10, pady=5)
 
         self.notsavecsv_var = tk.BooleanVar()
@@ -49,12 +53,14 @@ class Widgets:
         self.startyear_check = tk.Checkbutton(self.root, text="Start year", variable=self.startyear_var)
         self.startyear_check.grid(row=6, column=1, sticky='w')
         self.startyear_entry = tk.Entry(self.root, width=50)
+        self.startyear_entry.insert(0, "")  # 追加
         self.startyear_entry.grid(row=6, column=0, padx=10, pady=5)
 
         self.endyear_var = tk.BooleanVar()
         self.endyear_check = tk.Checkbutton(self.root, text="End year", variable=self.endyear_var)
         self.endyear_check.grid(row=7, column=1, sticky='w')
         self.endyear_entry = tk.Entry(self.root, width=50)
+        self.endyear_entry.insert(0, "")  # 追加
         self.endyear_entry.grid(row=7, column=0, padx=10, pady=5)
 
         self.debug_var = tk.BooleanVar()
