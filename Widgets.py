@@ -21,11 +21,8 @@ class Widgets:
 
         # オプションのチェックボックスとエントリーフィールドの作成
         self.sortby_var = tk.BooleanVar()
-        self.sortby_check = tk.Checkbutton(self.root, text="Sort by", variable=self.sortby_var)
+        self.sortby_check = tk.Checkbutton(self.root, text="Sort by cit/year", variable=self.sortby_var)
         self.sortby_check.grid(row=1, column=1, sticky='w')
-        self.sortby_entry = tk.Entry(self.root, width=50)
-        self.sortby_entry.insert(0, "")  # 追加
-        self.sortby_entry.grid(row=1, column=0, padx=10, pady=5)
 
         self.nresults_var = tk.BooleanVar()
         self.nresults_check = tk.Checkbutton(self.root, text="Number of results", variable=self.nresults_var)
@@ -107,7 +104,7 @@ class Widgets:
             command += f' --endyear {self.endyear_entry.get()}'
         
         if self.sortby_var.get():
-            command += f' --sortby "{self.sortby_entry.get()}"'
+            command += ' --sortby "cit/year"'
         if self.notsavecsv_var.get():
             command += ' --notsavecsv'
         if self.plotresults_var.get():
